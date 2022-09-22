@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    url: jdbc:mysql://rm-bp11010pmwf75ptx5io.mysql.rds.aliyuncs.com:3306/shadow_blog?rewriteBatchedStatement=true&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: qyd_user
+    password: lanhanlei0527QWE***
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # lhl200105274015
+  jdbc:
+    template:
+      query-timeout: 3
+  servlet:
+    multipart:
+      max-file-size: 60MB
+      max-request-size: 100MB
+  redis:
+    port: 6379
+    host: 124.222.121.212
+
+oss:
+  accessKey: XzauBGKv-Wa2FDFwqY3JDL13jZW8PrYhpbyv-cYz
+  secretKey: OiAKBx5lTpO6S-5nADOqVVGeLTMe_gtKMfBno9cF
+  bucket: qyd-blog
+
+
+# 配置mybatis规则
+mybatis:
+  #  config-location: classpath:mybatis/mybatis-config.xml  #全局配置文件位置
+  mapper-locations: classpath:mapper/*.xml  #sql映射文件位置
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 后台端口
+server:
+  port: 8989
+
+mybatis-plus:
+  configuration:
+    # 日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: delFlag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: auto
+
+

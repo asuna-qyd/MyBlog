@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asuna.mapper.UserMapper">
+
+    <select id="selectOne" resultType="com.asuna.entity.User">
+        select * from sys_user where user_name = #{username}
+    </select>
+
+    <select id="findNiceNameById" resultType="java.lang.String">
+        select nick_name from sys_user where id = #{id}
+    </select>
+
+    <select id="userInfo" resultType="com.asuna.vo.UserInfoVo">
+        select * from sys_user where status = 0 and del_flag = 0 and id = #{userId}
+    </select>
+
+    <update id="updateUserInfo" parameterType="com.asuna.entity.User">
+        update sys_user set avatar = #{avatar}, email = #{email}, nick_name = #{nickName} , sex = #{sex} where id = #{id}
+    </update>
+
+    <select id="UserNameExist" resultType="Integer">
+        select count(*) from sys_user where user_name = #{username}
+    </select>
+
+    <select id="NickNameExist" resultType="Integer">
+        select count(*) from sys_user where nick_name = #{nickname}
+    </select>
+
+    <select id="EmailExist" resultType="Integer">
+        select count(*) from sys_user where email = #{email}
+    </select>
+
+    <insert id="InsertUser" parameterType="com.asuna.entity.User">
+        insert into sys_user( create_time, phonenumber, email,  password, nick_name, user_name)
+                values (#{createTime}, #{phonenumber}, #{email}, #{password}, #{nickName},
+                        #{userName})
+    </insert>
+</mapper>
